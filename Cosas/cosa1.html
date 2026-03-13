@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <body>
+    <table id="TablaPrueba" name="tabla1" border="0">
+        <thead>
+            <th></th> 
+            <th></th> 
+        </thead>
+        <tbody>
+            <tr>
+                <td></td> 
+                <td><img src="/Img/cafe.jfif" alt="" class="avatar" width="110"></td>
+            </tr>
+            <tr>
+                <td>cantidad</td> 
+                <td><input type="text" id="cant"></td>
+            </tr>
+            <tr>
+                <td>cliente</td> 
+                <td><input type="text" id="nom"></td>
+            </tr>
+            <tr>
+                <td>extra grande $55</td> 
+                <td><input name="tm" type="radio" value="extra grande"></td>
+            </tr>  
+            <tr>
+                <td>grande $35</td> 
+                <td><input name="tm" type="radio" value="grande"></td>
+            </tr>
+            <tr>
+                <td>mediano $20</td> 
+                <td><input name="tm" type="radio" value="mediano"></td>
+            </tr>
+            <tr>
+                <td>chico $15</td> 
+                <td><input name="tm" type="radio" value="chico"></td>
+            </tr>
+            <tr>
+                <td>canela $5</td>
+                <td><input type="checkbox" name="extra" class="extra" value="canela"></td>
+            </tr>
+            <tr>
+                <td>chocolate $10</td> 
+                <td><input type="checkbox" name="extra" class="extra" value="chocolate"></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <button id="algo" onclick="saludar()">click</button>
+    
+    <script>
+        function saludar() {
+            let cant = document.getElementById("cant");
+            let nom = document.getElementById("nom");
+            let tam = document.querySelector('input[name="tm"]:checked');
+            
+            // Obtener todos los checkboxes seleccionados
+            const extras = document.querySelectorAll(".extra:checked");
+            let extrasSeleccionados = [];
+            
+            extras.forEach(extra => {
+                console.log("extra: " + extra.value);
+                extrasSeleccionados.push(extra.value);
+            });
+            
+            // Validar que los campos necesarios estén llenos
+            if (!cant.value || !nom.value) {
+                alert("Por favor complete todos los campos");
+                return;
+            }
+            
+            // Crear mensaje con todas las selecciones
+            let mensaje = 'Datos de: ' + nom.value + 
+                         '\nCantidad: ' + cant.value;
+            
+            if (tam) {
+                mensaje += '\nTamaño: ' + tam.value;
+            } else {
+                mensaje += '\nTamaño: No seleccionado';
+            }
+            
+            if (extrasSeleccionados.length > 0) {
+                mensaje += '\nExtras: ' + extrasSeleccionados.join(', ');
+            } else {
+                mensaje += '\nExtras: Ninguno';
+            }
+            
+            alert(mensaje);
+        }
+    </script>
+</body>
+</html> 
